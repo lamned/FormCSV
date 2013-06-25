@@ -1,0 +1,136 @@
+= form_for @questionaire do |f|
+  - if @questionaire.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@questionaire.errors.count, "error")} prohibited this questionaire from being saved:"
+      %ul
+        - @questionaire.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :gender, 'Geschlecht'
+    %br
+    = f.radio_button("gender","m")
+    = f.label :gender, 'Männlich', value:'m'
+    %br
+    = f.radio_button("gender","w")
+    = f.label :gender, 'Weiblich', value:'w'
+  .field
+    = f.label :profession, 'Ausbildungsberuf'
+    %br
+    = f.text_field :profession
+  .field
+    = f.label :age, 'Alter'
+    %br
+    = f.number_field :age
+  .field
+    = f.label :city, 'Stadt deines ausbildenden Unternehmens'
+    %br
+    = f.text_field :city
+  .field
+    = f.label :graduation, 'Welchen Schulabschluss hast du?'
+    %br
+    =# f.select :graduation, [["Kein Schulabschluss", "Kein Schulabschluss"], ["Hauptschulabschluss", "Hauptschulabschluss"], ["Realschulabschluss", "Realschulabschluss"], ["Abitur", "Abitur"], ["Fachabitur", "Fachabitur"]]
+    = f.check_box :graduation, {multiple: true}, 'Kein Schulabschluss', nil
+    = f.label :graduation, 'Kein Schulabschluss'
+    %br
+    = f.check_box :graduation, {multiple: true}, "Hauptschulabschluss", nil
+    = f.label :graduation, 'Hauptschulabschluss'
+    %br
+    = f.check_box :graduation, {multiple: true}, "Realschulabschluss", nil
+    = f.label :graduation, 'Realschulabschluss'
+    %br
+    = f.check_box :graduation, {multiple: true}, "Abitur", nil
+    = f.label :graduation, 'Abitur'
+    %br
+    = f.check_box :graduation, {multiple: true}, "Fachabitur", nil
+    = f.label :graduation, 'Fachabitur'
+    %br
+
+  .field
+    = f.label :year_apprenticeship, 'In welchem Lehrjahr bist du?'
+    = f.select :year_apprenticeship, [["1", "1"], ["2", "2"], ["3", "3"]]
+  .field
+    = f.label :first_apprenticeship, 'Ist das deine erste Ausbildung?'
+    = f.check_box :first_apprenticeship
+  .field
+    = f.label :subsistence, 'Wie bestreitest du zusätzlich deinen Lebensunterhalt?'
+    %br
+    = #f.select :subsistence, [["Finanzielle Unterstützung meiner Eltern", "Finanzielle Unterstützung meiner Eltern"], ["BAfög", "BAföG"], ["Ersparnisse", "Ersparnisse"], ["Kredit", "Kredit"], ["Mein Gehalt ist ausreichend", "Mein Gehalt ist ausreichend"], ["Anderer Grund", "Anderer Grund"]]
+
+    = render 'checkboxes_with_custom_text', options: Questionaire.subsistence_options, f: f, method: :subsistence
+
+    / .hidden{:id => "hidden", :style => "display: none"}= text_field_tag 'questionaire[subsistence][]'
+    = #f.check_box :subsistence, :box, :onclick => :javascript "document.getElementByName('Anderer Grund').style.display = (this.checked ? 'inline' : 'none');"
+    = #f.text_field :subsistence, :bar, :style => ((params[:subsistence] and params[:subsistence] [:box] == '1') ? 'display:inline' : 'display:none')
+  .field
+    = f.label :gross_salary, 'Wie hoch ist dein Brutto-Gehalt? (Ohne Euro-Zeichen!)'
+    %br
+    = f.number_field :gross_salary
+  .field
+    = f.label :number_applications, 'Wie viele Bewerbungen hast du geschrieben?'
+    %br
+    = f.number_field :number_applications
+  .field
+    = f.label :found_apprenticeship, 'Wo hast du deine Ausbildung gefunden?'
+    %br
+    = render 'checkboxes_with_custom_text', options: Questionaire.found_apprenticeship_options, f: f, method: :found_apprenticeship
+
+
+  .field
+    = f.label :internet_portal, 'Bei Internet-Portal: Welches Internet-Portal?'
+    %br
+    = render 'checkboxes_with_custom_text', options: Questionaire.internet_portal_options, f: f, method: :internet_portal
+
+  .field
+    = f.label :known_portals, 'Welches dieser Internet-Portale kennst du?'
+    %br
+    = render 'checkboxes_with_custom_text', options: Questionaire.known_portals_options, f: f, method: :known_portals
+
+  .field
+    = f.label :different_professions, 'Für welche anderen Ausbildungsberufe hast du dich beworben?'
+    = f.text_field :different_professions
+  .field
+    = f.label :dream_job, 'Ist dein derzeitiger Ausbildungsberuf dein Traumberuf?'
+    = f.check_box :dream_job
+  .field
+    = f.label :different_dream_job, 'Falls nicht: Was ist dein Traumberuf?'
+    = f.text_field :different_dream_job
+  .field
+    = f.label :reason_apprenticeship, 'Aus welchem Grund hast du dich für deinen Ausbildungsberuf entschieden?'
+    %br
+    = render 'checkboxes_with_custom_text', options: Questionaire.reason_apprenticeship_options, f: f, method: :reason_apprenticeship
+
+  .field
+    = f.label :canceled_apprenticeship, 'Hast du bereits eine Ausbildung abgebrochen?'
+    = f.check_box :canceled_apprenticeship
+  .field
+    = f.label :canceled_job, 'Falls Ja: Welchen Ausbildungsberuf hast du abgebrochen?'
+    = f.text_field :canceled_job
+  .field
+    = f.label :reason_canceled_apprenticeship, 'Aus welchem Grund hast du deine Ausbildung frühzeitig abgebrochen?'
+    %br
+    = render 'checkboxes_with_custom_text', options: Questionaire.reason_canceled_apprenticeship_options, f: f, method: :reason_canceled_apprenticeship
+
+  .field
+    = f.label :annoying_apprenticeship, 'Was nervt dich so richtig an deiner Ausbildung?'
+    %br
+    = render 'checkboxes_with_custom_text', options: Questionaire.annoying_apprenticeship_options, f: f, method: :annoying_apprenticeship
+  .field
+    = f.label :organization_or_school, 'Wo verbringst du lieber deine Zeit?'
+    %br
+    = f.check_box :organization_or_school, {multiple: true}, "Im Unternehmen", nil
+    = f.label :organization_or_school, 'Im Unternehmen'
+    %br
+    = f.check_box :organization_or_school, {multiple: true}, "In der Berufsschule", nil
+    = f.label :organization_or_school, 'In der Berufsschule'
+  .field
+    = f.label :school_like, 'Gefällt dir die Berufsschule?'
+    = f.check_box :school_like
+  .field
+    = f.label :organization_like, 'Gefällt dir dein ausbildendes Unternehmen?'
+    = f.check_box :organization_like
+  .field
+    = f.label :profession_like, 'Gefällt dir dein Ausbildungsberuf?'
+    = f.check_box :profession_like
+  .actions
+    = f.submit 'Save'

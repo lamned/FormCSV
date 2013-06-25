@@ -1,0 +1,6 @@
+- options.each do |option|
+  = f.check_box method, {multiple: true, checked: option_checked?(f.object, method, option) }, option, nil
+  = f.label method, option
+  %br
+= f.label method, 'Was anderes:'
+= text_field_tag "#{f.object_name}[#{method}][]", get_custom_string_from_options(f.object, method, options)

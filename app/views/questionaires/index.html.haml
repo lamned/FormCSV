@@ -1,0 +1,67 @@
+%h1 Listing questionaires
+
+%table
+  %tr
+    %th Gender
+    %th Profession
+    %th Age
+    %th City
+    %th Graduation
+    %th Year apprenticeship
+    %th First apprenticeship
+    %th Subsistence
+    %th Gross salary
+    %th Number applications
+    %th Found apprenticeship
+    %th Internet portal
+    %th Known portals
+    %th Different professions
+    %th Dream job
+    %th Different dream job
+    %th Reason apprenticeship
+    %th Canceled apprenticeship
+    %th Canceled job
+    %th Reason canceled apprenticeship
+    %th Annoying apprenticeship
+    %th Organization or school
+    %th School like
+    %th Organization like
+    %th Profession like
+    %th
+    %th
+    %th
+
+  - @questionaires.each do |questionaire|
+    %tr
+      %td= questionaire.gender
+      %td= questionaire.profession
+      %td= questionaire.age
+      %td= questionaire.city
+      %td= questionaire.graduation
+      %td= questionaire.year_apprenticeship
+      %td= questionaire.first_apprenticeship
+      %td= questionaire.subsistence
+      %td= questionaire.gross_salary
+      %td= questionaire.number_applications
+      %td= questionaire.found_apprenticeship
+      %td= questionaire.internet_portal
+      %td= questionaire.known_portals
+      %td= questionaire.different_professions
+      %td= questionaire.dream_job
+      %td= questionaire.different_dream_job
+      %td= questionaire.reason_apprenticeship
+      %td= questionaire.canceled_apprenticeship
+      %td= questionaire.canceled_job
+      %td= questionaire.reason_canceled_apprenticeship
+      %td= questionaire.annoying_apprenticeship
+      %td= questionaire.organization_or_school
+      %td= questionaire.school_like
+      %td= questionaire.organization_like
+      %td= questionaire.profession_like
+      %td= link_to 'Show', questionaire
+      %td= link_to 'Edit', edit_questionaire_path(questionaire)
+      %td= link_to 'Destroy', questionaire, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Questionaire', new_questionaire_path
