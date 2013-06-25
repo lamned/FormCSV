@@ -1,31 +1,6 @@
 # encoding: UTF-8
-class Questionaire
-  include Mongoid::Document
-  field :gender, type: String
-  field :profession, type: String
-  field :age, type: Integer
-  field :city, type: String
-  field :graduation, type: Array, default: []
-  field :year_apprenticeship, type: Integer
-  field :first_apprenticeship, type: Boolean
-  field :subsistence, type: Array, default: []
-  field :gross_salary, type: Integer
-  field :number_applications, type: Integer
-  field :found_apprenticeship, type: Array, default: []
-  field :internet_portal, type: Array, default: []
-  field :known_portals, type: Array, default: []
-  field :different_professions, type: String
-  field :dream_job, type: Boolean
-  field :different_dream_job, type: String
-  field :reason_apprenticeship, type: Array, default: []
-  field :canceled_apprenticeship, type: Boolean
-  field :canceled_job, type: String
-  field :reason_canceled_apprenticeship, type: Array, default: []
-  field :annoying_apprenticeship, type: Array, default: []
-  field :organization_or_school, type: String
-  field :school_like, type: Boolean
-  field :organization_like, type: Boolean
-  field :profession_like, type: Boolean
+class Questionaire < ActiveRecord::Base
+  attr_accessible :gender, :profession, :age, :city, :graduation, :year_apprenticeship, :first_apprenticeship, :subsistence, :gross_salary, :number_applications, :found_apprenticeship, :internet_portal, :known_portals, :different_professions, :dream_job, :different_dream_job, :reason_apprenticeship, :canceled_apprenticeship, :canceled_job, :reason_canceled_apprenticeship, :annoying_apprenticeship, :organization_or_school, :school_like, :organization_like, :profession_like
 
   def self.subsistence_options
     ["Finanzielle Unterstützung meiner Eltern", 'BAföG', 'Ersparnisse', 'Kredit', 'Mein Gehalt ist ausreichend']

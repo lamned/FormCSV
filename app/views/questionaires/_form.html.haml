@@ -56,8 +56,7 @@
     = f.label :subsistence, 'Wie bestreitest du zusätzlich deinen Lebensunterhalt?'
     %br
     = #f.select :subsistence, [["Finanzielle Unterstützung meiner Eltern", "Finanzielle Unterstützung meiner Eltern"], ["BAfög", "BAföG"], ["Ersparnisse", "Ersparnisse"], ["Kredit", "Kredit"], ["Mein Gehalt ist ausreichend", "Mein Gehalt ist ausreichend"], ["Anderer Grund", "Anderer Grund"]]
-
-    = render 'checkboxes_with_custom_text', options: Questionaire.subsistence_options, f: f, method: :subsistence
+    = render 'checkboxes_with_custom_text', check_options: Questionaire.subsistence_options, f: f, method: :subsistence
 
     / .hidden{:id => "hidden", :style => "display: none"}= text_field_tag 'questionaire[subsistence][]'
     = #f.check_box :subsistence, :box, :onclick => :javascript "document.getElementByName('Anderer Grund').style.display = (this.checked ? 'inline' : 'none');"
@@ -73,18 +72,18 @@
   .field
     = f.label :found_apprenticeship, 'Wo hast du deine Ausbildung gefunden?'
     %br
-    = render 'checkboxes_with_custom_text', options: Questionaire.found_apprenticeship_options, f: f, method: :found_apprenticeship
+    = render 'checkboxes_with_custom_text', check_options: Questionaire.found_apprenticeship_options, f: f, method: :found_apprenticeship
 
 
   .field
     = f.label :internet_portal, 'Bei Internet-Portal: Welches Internet-Portal?'
     %br
-    = render 'checkboxes_with_custom_text', options: Questionaire.internet_portal_options, f: f, method: :internet_portal
+    = render 'checkboxes_with_custom_text', check_options: Questionaire.internet_portal_options, f: f, method: :internet_portal
 
   .field
     = f.label :known_portals, 'Welches dieser Internet-Portale kennst du?'
     %br
-    = render 'checkboxes_with_custom_text', options: Questionaire.known_portals_options, f: f, method: :known_portals
+    = render 'checkboxes_with_custom_text', check_options: Questionaire.known_portals_options, f: f, method: :known_portals
 
   .field
     = f.label :different_professions, 'Für welche anderen Ausbildungsberufe hast du dich beworben?'
@@ -98,7 +97,7 @@
   .field
     = f.label :reason_apprenticeship, 'Aus welchem Grund hast du dich für deinen Ausbildungsberuf entschieden?'
     %br
-    = render 'checkboxes_with_custom_text', options: Questionaire.reason_apprenticeship_options, f: f, method: :reason_apprenticeship
+    = render 'checkboxes_with_custom_text', check_options: Questionaire.reason_apprenticeship_options, f: f, method: :reason_apprenticeship
 
   .field
     = f.label :canceled_apprenticeship, 'Hast du bereits eine Ausbildung abgebrochen?'
@@ -109,12 +108,12 @@
   .field
     = f.label :reason_canceled_apprenticeship, 'Aus welchem Grund hast du deine Ausbildung frühzeitig abgebrochen?'
     %br
-    = render 'checkboxes_with_custom_text', options: Questionaire.reason_canceled_apprenticeship_options, f: f, method: :reason_canceled_apprenticeship
+    = render 'checkboxes_with_custom_text', check_options: Questionaire.reason_canceled_apprenticeship_options, f: f, method: :reason_canceled_apprenticeship
 
   .field
     = f.label :annoying_apprenticeship, 'Was nervt dich so richtig an deiner Ausbildung?'
     %br
-    = render 'checkboxes_with_custom_text', options: Questionaire.annoying_apprenticeship_options, f: f, method: :annoying_apprenticeship
+    = render 'checkboxes_with_custom_text', check_options: Questionaire.annoying_apprenticeship_options, f: f, method: :annoying_apprenticeship
   .field
     = f.label :organization_or_school, 'Wo verbringst du lieber deine Zeit?'
     %br

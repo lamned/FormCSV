@@ -2,7 +2,7 @@ class QuestionairesController < ApplicationController
   # GET /questionaires
   # GET /questionaires.json
   def index
-    @questionaires = Questionaire.all
+    @questionaires = Questionaire.all.map{ |q| arraify_strings(q) }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -35,13 +35,17 @@ class QuestionairesController < ApplicationController
 
   # GET /questionaires/1/edit
   def edit
-    @questionaire = Questionaire.find(params[:id])
+    @questionaire = arraify_strings Questionaire.find(params[:id])
+
   end
 
   # POST /questionaires
   # POST /questionaires.json
   def create
-    @questionaire = Questionaire.new(params[:questionaire])
+    questionaire_params = params[:questionaire]
+    questionaire_params = stringify_arrays questionaire_params
+
+    @questionaire = Questionaire.new(questionaire_params)
 
     respond_to do |format|
       if @questionaire.save
@@ -81,5 +85,23 @@ class QuestionairesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def stringify_arrays(params_hash)
+    %w{ subsistence found_apprenticeship internet_portal known_portals reason_apprenticeship reason_canceled_apprenticeship annoying_apprenticeship }.each do |array_field|
+      array = params_hash[array_field]
+      params_hash[array_field] = array.join('%$%')
+    end
+    params_hash
+  end
+
+  def arraify_strings(questionaire)
+    %w{ subsistence found_apprenticeship internet_portal known_portals reason_apprenticeship reason_canceled_apprenticeship annoying_apprenticeship }.each do |string_field|
+      questionaire.send("#{string_field}=", questionaire.send(string_field).split('%$%'))
+    end
+    questionaire
+  end
+  helper_method :arraify_strings
 
 end

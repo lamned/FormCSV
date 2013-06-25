@@ -1,13 +1,11 @@
 source 'https://rubygems.org'
-ruby "1.9.3"
-# ...
 
 gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mongoid'
+gem 'pg'
 gem 'haml-rails'
 
 
@@ -38,4 +36,4 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
