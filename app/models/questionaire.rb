@@ -1,14 +1,13 @@
 # encoding: UTF-8
 class Questionaire < ActiveRecord::Base
   attr_accessible :gender, :profession, :age, :city, :graduation, :year_apprenticeship, :first_apprenticeship, :subsistence, :gross_salary, :number_applications, :found_apprenticeship, :internet_portal, :known_portals, :different_professions, :dream_job, :different_dream_job, :reason_apprenticeship, :canceled_apprenticeship, :canceled_job, :reason_canceled_apprenticeship, :annoying_apprenticeship, :organization_or_school, :school_like, :organization_like, :profession_like
-end
 
   def self.graduation_options
-    ['Kein Schulabschluss', 'Hauptschulabschluss', 'Realschulabschluss', 'Abitur', 'Fachabitur']
+    ["Kein Schulabschluss", "Hauptschulabschluss", "Realschulabschluss", "Abitur", "Fachabitur"]
   end
 
   def self.subsistence_options
-    ["Finanzielle Unterstützung meiner Eltern", 'BAföG', 'Ersparnisse', 'Kredit', 'Mein Gehalt ist ausreichend']
+    ["Finanzielle Unterstützung meiner Eltern", "BAföG", "Ersparnisse", "Kredit", "Mein Gehalt ist ausreichend"]
   end
 
   def self.found_apprenticeship_options
@@ -36,7 +35,7 @@ end
   end
 
   def self.organization_or_school_options
-    ['Im Unternehmen', 'In der Berufsschule']
+    ["Im Unternehmen", "In der Berufsschule"]
   end
 
 end
