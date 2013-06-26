@@ -2,6 +2,10 @@
 class Questionaire < ActiveRecord::Base
   attr_accessible :gender, :profession, :age, :city, :graduation, :year_apprenticeship, :first_apprenticeship, :subsistence, :gross_salary, :number_applications, :found_apprenticeship, :internet_portal, :known_portals, :different_professions, :dream_job, :different_dream_job, :reason_apprenticeship, :canceled_apprenticeship, :canceled_job, :reason_canceled_apprenticeship, :annoying_apprenticeship, :organization_or_school, :school_like, :organization_like, :profession_like
 
+  def self.graduation_options
+    ['Kein Schulabschluss', 'Hauptschulabschluss', 'Realschulabschluss', 'Abitur', 'Fachabitur']
+  end
+
   def self.subsistence_options
     ["Finanzielle Unterstützung meiner Eltern", 'BAföG', 'Ersparnisse', 'Kredit', 'Mein Gehalt ist ausreichend']
   end
@@ -28,6 +32,10 @@ class Questionaire < ActiveRecord::Base
 
   def self.annoying_apprenticeship_options
     ["Zu wenig Freizeit", "Uninteressante Aufgaben", "Geringes Gehalt", "Unsympathische Kollegen", "Unsympathische Vorgesetzte", "Die Berufsschule", "Gar nichts"]
+  end
+
+  def self.annoying_apprenticeship
+    ['Im Unternehmen', 'In der Berufsschule']
   end
 
 end
